@@ -7,7 +7,11 @@ import { MantineProvider } from '@mantine/core';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <MantineProvider>
+        <MantineProvider
+            theme={{
+                fontFamily: 'Anonymous Pro, monospace', // Fallback monospace
+            }}
+        >
             <App />
         </MantineProvider>
     </StrictMode>,
