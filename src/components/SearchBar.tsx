@@ -1,6 +1,10 @@
 import { Box, Button, TextInput } from "@mantine/core"
 import { useState } from "react"
 import { useMovieContext } from "../context/MovieContext";
+import { moodToGenres } from "../utils/moodToGenre";
+
+const api_key = import.meta.env.VITE_TMDB_API_KEY;
+const bearer_token = import.meta.env.VITE_TMDB_BEARER_TOKEN;
 
 function SearchBar() {
     const [mood, setMood] = useState<string>('');
@@ -8,6 +12,34 @@ function SearchBar() {
     const [isMoodEmpty, setIsMoodEmpty] = useState<boolean>(false);
 
     const { setMovies } = useMovieContext();
+
+    const fetchMovies = async () => {
+
+        // get the genre mapping from mood
+        const genre = moodToGenres[mood.toLowerCase()];
+
+        if (!genre) {
+            console.log('No genre of this type exists.');
+            return;
+        }
+
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${bearer_token}`
+            }
+        };
+        const response = await fetch(`https://api.themoviedb.org/3/discover/movie?with_genres=${genre.join(',')}`, options)
+
+        if (!response.ok) {
+            console.error('TMDB Error: Unable to fetch movies from TMDB.');
+            return;
+        }
+
+        const data = await response.json();
+        console.log(data.results);
+    }
 
     const handleRecommend = () => {
         // fetches the movies from TMDB, based on mood entered
@@ -18,6 +50,11 @@ function SearchBar() {
         }
         setIsMoodEmpty(false);
         console.log(`mood: ${mood}`);
+
+        // fetch movie data from TMDB
+        fetchMovies();
+
+        // clear the text input
         setMood('');
     }
 
