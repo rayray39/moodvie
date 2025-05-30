@@ -1,17 +1,17 @@
-import { Box, Stack, Text } from "@mantine/core"
+import { Stack, Text } from "@mantine/core"
 import SearchBar from "./components/SearchBar"
 
 function App() {
 
   return (
-    <Stack style={{
+    <Stack gap={'xs'} style={{
         display:'flex',
-        justifyContent:'center',
+        justifyContent:'start',
         alignItems:'center',
         height:'100vh'
     }}>
         <Text size="xl" fw={700} tt={'uppercase'}>Moodvie</Text>
-        A movie recommender system based on your mood.
+        <Text>A movie recommender system based on your mood.</Text>
 
         <SearchBar />
     </Stack>
