@@ -1,16 +1,20 @@
-import { Box } from "@mantine/core"
+import { Box, Stack, Text } from "@mantine/core"
+import SearchBar from "./components/SearchBar"
 
 function App() {
 
   return (
-    <Box style={{
+    <Stack style={{
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
         height:'100vh'
     }}>
-        Hello World, this is my new website called Moodvie. It's a movie recommender system based on your mood.
-    </Box>
+        <Text size="xl" fw={700} tt={'uppercase'}>Moodvie</Text>
+        A movie recommender system based on your mood.
+
+        <SearchBar />
+    </Stack>
   )
 }
 
