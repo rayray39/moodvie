@@ -5,17 +5,17 @@ function MovieCard({ movieTitle, movieOverview, movieReleaseDate, movieBackDrop 
         <Card shadow="sm" padding="lg" radius="md" withBorder>
             <Card.Section>
                 <Image
-                    src={movieBackDrop}
+                    src={`https://image.tmdb.org/t/p/w500/${movieBackDrop}`}
                     height={100}
                     alt="movie-image"
                 />
             </Card.Section>
 
-            <Text fw={500} mt={'md'} mb={'xs'}>{movieTitle}</Text>
+            <Text fw={700} mt={'md'} mb={'xs'}>{movieTitle}</Text>
 
             <Text size="xs">{movieReleaseDate}</Text>
 
-            <Text size="sm" c="dimmed">
+            <Text lineClamp={2} size="sm" c="dimmed">
                 {movieOverview}
             </Text>
 

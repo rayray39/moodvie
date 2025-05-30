@@ -9,7 +9,9 @@ function Movies() {
     return <>
         <SearchBar />
 
-        <Stack>
+        <Stack style={{
+            width:'500px'
+        }}>
             {
                 movies.map(movie => (
                     <MovieCard
