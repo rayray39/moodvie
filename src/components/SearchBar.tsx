@@ -1,10 +1,13 @@
 import { Box, Button, TextInput } from "@mantine/core"
 import { useState } from "react"
+import { useMovieContext } from "../context/MovieContext";
 
 function SearchBar() {
     const [mood, setMood] = useState<string>('');
 
     const [isMoodEmpty, setIsMoodEmpty] = useState<boolean>(false);
+
+    const { setMovies } = useMovieContext();
 
     const handleRecommend = () => {
         // fetches the movies from TMDB, based on mood entered
