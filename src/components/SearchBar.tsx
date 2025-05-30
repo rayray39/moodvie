@@ -2,8 +2,8 @@ import { Box, Button, TextInput } from "@mantine/core"
 import { useState } from "react"
 import { useMovieContext } from "../context/MovieContext";
 import { moodToGenres } from "../utils/moodToGenre";
+import type { Movie } from "../types/Movie";
 
-const api_key = import.meta.env.VITE_TMDB_API_KEY;
 const bearer_token = import.meta.env.VITE_TMDB_BEARER_TOKEN;
 
 function SearchBar() {
@@ -39,6 +39,17 @@ function SearchBar() {
 
         const data = await response.json();
         console.log(data.results);
+
+        const movies:Movie[] = data.results.map((item: { id: any; title: any; overview: any; release_date: any; backdrop_path: any; }) => ({
+            id: item.id,
+            title: item.title,
+            overview: item.overview,
+            release_date: item.release_date,
+            backdrop_path: item.backdrop_path
+        }))
+
+        setMovies(movies);
+        console.log('Successfully fetched movies from TMDB.');
     }
 
     const handleRecommend = () => {
