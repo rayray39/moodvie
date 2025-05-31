@@ -10,12 +10,13 @@ function Movies() {
         <SearchBar />
 
         <Stack style={{
-            width:'500px'
+            width:'600px'
         }}>
             {
                 movies.map(movie => (
                     <MovieCard
                         key={movie.id}
+                        movieId={movie.id}
                         movieTitle={movie.title}
                         movieOverview={movie.overview}
                         movieReleaseDate={movie.release_date}
