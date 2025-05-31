@@ -1,4 +1,3 @@
-import SearchBar from "./SearchBar";
 import { Stack } from "@mantine/core";
 import MovieCard from "./MovieCard";
 import { useMovieContext } from "../context/MovieContext";
@@ -7,8 +6,6 @@ function Movies() {
     const { movies } = useMovieContext();
 
     return <>
-        <SearchBar />
-
         <Stack style={{
             width:'600px'
         }}>

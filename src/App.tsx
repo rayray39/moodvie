@@ -1,5 +1,6 @@
 import { Stack, Text } from "@mantine/core"
-import Movies from "./components/Movies"
+import Pages from "./components/Pages"
+import SearchBar from "./components/SearchBar"
 import { MovieProvider } from "./context/MovieContext"
 
 function App() {
@@ -13,10 +14,12 @@ function App() {
     }}>
         <Text size="xl" fw={700} tt={'uppercase'}>Moodvie</Text>
         <Text>A movie recommender system based on your mood.</Text>
-
+        
         <MovieProvider>
-            <Movies />
+            <SearchBar />    
         </MovieProvider>
+
+        <Pages />
     </Stack>
   )
 }
