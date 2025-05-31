@@ -1,6 +1,7 @@
 import { Tabs } from "@mantine/core";
 import { MovieProvider } from "../context/MovieContext";
 import Movies from "./Movies";
+import Favourites from "./Favourites";
 
 function Pages() {
     return (
@@ -25,7 +26,7 @@ function Pages() {
             </Tabs.Panel>
 
             <Tabs.Panel value="favourites">
-                Favourites tab content
+                <Favourites />
             </Tabs.Panel>
 
             <Tabs.Panel value="watched">
