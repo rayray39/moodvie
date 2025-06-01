@@ -1,38 +1,22 @@
 import { Stack } from "@mantine/core"
-import { useEffect, useState } from "react"
-import type { Movie } from "../types/Movie";
+import { useEffect } from "react"
 import MovieCard from "./MovieCard";
+import { useFavourites } from "../context/FavouritesContext";
 
 function Favourites() {
-    const [favMovies, setFavMovies] = useState<Movie[]>([]);
-
-    const fetchFavourites = async () => {
-        try {
-            const response = await fetch('http://localhost:5000/get-favourites', {
-                method:'GET',
-                headers:{'Content-Type':'application/json'}
-            })
-
-            const data = await response.json();
-            console.log(data.message);
-            setFavMovies(data.results);
-        } catch (error) {
-            console.log('Error occured while fetching favourite movies:', error);
-            return;
-        }
-    }
+    const { fetchFavourites, favourites } = useFavourites();
 
     useEffect(() => {
         // fetch all the fav movies from the favourites.JSON file
         fetchFavourites();
-    }, [])
+    }, [favourites])
 
     return <>
         <Stack mt={'sm'} style={{
             width:'600px',
         }}>
             {
-                favMovies && favMovies.map(movie => (
+                favourites.map(movie => (
                     <MovieCard
                         key={movie.id}
                         movieId={movie.id}

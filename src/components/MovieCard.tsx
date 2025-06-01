@@ -1,29 +1,21 @@
 import { Button, Card, Flex, Image, Text } from "@mantine/core"
+import { useFavourites } from "../context/FavouritesContext";
+import type { Movie } from "../types/Movie";
 
 function MovieCard({ movieId, movieTitle, movieOverview, movieReleaseDate, movieBackDrop, parentPage }:{ movieId:number ,movieTitle:string, movieOverview:string, movieReleaseDate:string, movieBackDrop:string, parentPage:string }) {
     
-    const handleAddToFavs = async () => {
-        // adds the movie to favourites list
-        try {
-            const response = await fetch('http://localhost:5000/add-favourites', {
-                method:'POST',
-                headers:{'Content-Type':'application/json'},
-                body:JSON.stringify({
-                    id: movieId,
-                    title: movieTitle,
-                    overview: movieOverview,
-                    release_date: movieReleaseDate,
-                    backdrop_path: movieBackDrop
-                })
-            })
+    const { addToFavourites } = useFavourites();
 
-            const data = await response.json();
-            console.log(data.message);
-            console.log(`movie added to favs: ${movieId}`);
-        } catch (error) {
-            console.log('Error adding movie to favs:', error);
-            return;
+    const handleAddToFavs = () => {
+        // adds the movie to favourites list
+        const newMovie:Movie = {
+            id: movieId,
+            title: movieTitle,
+            overview: movieOverview,
+            release_date: movieReleaseDate,
+            backdrop_path: movieBackDrop
         }
+        addToFavourites(newMovie);
     }
 
     const handleAddToWatched = () => {
