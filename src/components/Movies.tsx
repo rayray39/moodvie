@@ -1,4 +1,3 @@
-import SearchBar from "./SearchBar";
 import { Stack } from "@mantine/core";
 import MovieCard from "./MovieCard";
 import { useMovieContext } from "../context/MovieContext";
@@ -7,10 +6,8 @@ function Movies() {
     const { movies } = useMovieContext();
 
     return <>
-        <SearchBar />
-
-        <Stack style={{
-            width:'600px'
+        <Stack mt={'sm'} style={{
+            width:'600px',
         }}>
             {
                 movies.map(movie => (
@@ -21,6 +18,7 @@ function Movies() {
                         movieOverview={movie.overview}
                         movieReleaseDate={movie.release_date}
                         movieBackDrop={movie.backdrop_path}
+                        parentPage="home"
                     />
                 ))
             }

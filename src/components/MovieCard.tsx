@@ -1,13 +1,55 @@
 import { Button, Card, Flex, Image, Text } from "@mantine/core"
+import { useFavourites } from "../context/FavouritesContext";
+import type { Movie } from "../types/Movie";
 
-function MovieCard({ movieId, movieTitle, movieOverview, movieReleaseDate, movieBackDrop }:{ movieId:number ,movieTitle:string, movieOverview:string, movieReleaseDate:string, movieBackDrop:string }) {
+function MovieCard({ movieId, movieTitle, movieOverview, movieReleaseDate, movieBackDrop, parentPage }:{ movieId:number ,movieTitle:string, movieOverview:string, movieReleaseDate:string, movieBackDrop:string, parentPage:string }) {
     
+    const { addToFavourites, removeFromFavourites } = useFavourites();
+
     const handleAddToFavs = () => {
-        console.log(`movie added to favs: ${movieId}`);
+        // adds the movie to favourites list
+        const newMovie:Movie = {
+            id: movieId,
+            title: movieTitle,
+            overview: movieOverview,
+            release_date: movieReleaseDate,
+            backdrop_path: movieBackDrop
+        }
+        addToFavourites(newMovie);
     }
 
     const handleAddToWatched = () => {
+        // adds the movie to watched list
         console.log(`movie added to watched list: ${movieId}`);
+    }
+
+    const handleRemoveFromFavs = () => {
+        // removes the movie from the favourites list
+        removeFromFavourites(movieId);
+    }
+
+    const handleRemoveFromWatched = () => {
+        // removes the movie from the watched list
+        console.log(`movie removed from watched list: ${movieId}`);
+    }
+
+    const displayButtons = () => {
+        if (parentPage === 'home') {
+            return <>
+                <Button variant="default" color="blue" fullWidth mt="xs" radius="md" onClick={handleAddToFavs}>Add to Favourites</Button>
+                <Button variant="default" color="blue" fullWidth mt="xs" radius="md" onClick={handleAddToWatched}>Add to Watched</Button>
+            </>
+        } else if (parentPage === 'favourites') {
+            return <>
+                <Button variant="default" color="blue" fullWidth mt="xs" radius="md" onClick={handleRemoveFromFavs}>Remove from Favourites</Button>
+            </>
+        } else if (parentPage === 'watched') {
+            return <>
+                <Button variant="default" color="blue" fullWidth mt="xs" radius="md" onClick={handleRemoveFromWatched}>Remove from Watched</Button>
+            </>
+        } else {
+            return null
+        }
     }
 
     return <>
@@ -29,8 +71,7 @@ function MovieCard({ movieId, movieTitle, movieOverview, movieReleaseDate, movie
             </Text>
 
             <Flex gap={'md'}>
-                <Button variant="default" color="blue" fullWidth mt="xs" radius="md" onClick={handleAddToFavs}>Add to Favourites</Button>
-                <Button variant="default" color="blue" fullWidth mt="xs" radius="md" onClick={handleAddToWatched}>Add to Watched</Button>
+                { displayButtons() }
             </Flex>
         </Card>
     </>
