@@ -57,9 +57,28 @@ app.post('/add-favourites', async (req, res) => {
 
         favs.push(newMovie);
         await writeFavourites(favs);
-        return res.status(200).json({ messsage: 'Successfully added movie to favourites.JSON.' });
+        return res.status(200).json({ result: favs, messsage: 'Successfully added movie to favourites.JSON.' });
     } catch (error) {
         return res.status(500).json({ message: 'Error: Failed to add movie to favourites JSON file.' });
+    }
+})
+
+// removes the movie, with the matching id, from the favourites.json file
+app.delete('/remove-favourites/:id', async (req, res) => {
+    const id = parseInt(req.params.id, 10);
+    if (!id) {
+        console.log('Error: Missing movie id.');
+        return;
+    }
+
+    try {
+        const favs = await readFavourites();
+
+        const newFavs = favs.filter((movie) => movie.id !== id);
+        await writeFavourites(newFavs);
+        return res.status(200).json({ result: newFavs, messsage: 'Successfully removied movie from favourites.JSON.' });
+    } catch (error) {
+        return res.status(500).json({ message: 'Error: Failed to removed movie from favourites JSON file.' });
     }
 })
 

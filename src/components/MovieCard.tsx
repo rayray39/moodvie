@@ -4,7 +4,7 @@ import type { Movie } from "../types/Movie";
 
 function MovieCard({ movieId, movieTitle, movieOverview, movieReleaseDate, movieBackDrop, parentPage }:{ movieId:number ,movieTitle:string, movieOverview:string, movieReleaseDate:string, movieBackDrop:string, parentPage:string }) {
     
-    const { addToFavourites } = useFavourites();
+    const { addToFavourites, removeFromFavourites } = useFavourites();
 
     const handleAddToFavs = () => {
         // adds the movie to favourites list
@@ -25,7 +25,7 @@ function MovieCard({ movieId, movieTitle, movieOverview, movieReleaseDate, movie
 
     const handleRemoveFromFavs = () => {
         // removes the movie from the favourites list
-        console.log(`movie removed from favs: ${movieId}`);
+        removeFromFavourites(movieId);
     }
 
     const handleRemoveFromWatched = () => {

@@ -6,6 +6,7 @@ interface FavouritesContextType {
     favourites: Movie[];
     addToFavourites: (movie: Movie) => void;
     fetchFavourites: () => void;
+    removeFromFavourites: (id:number) => void;
 }
 
 const FavouritesContext = createContext<FavouritesContextType | undefined>(undefined);
@@ -40,6 +41,7 @@ export const FavouritesProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
             const data = await response.json();
             console.log(data.message);
+            setFavourites(data.result);
             console.log(`movie added to favs: ${movie.id}`);
         } catch (error) {
             console.log('Error adding movie to favs:', error);
@@ -47,8 +49,26 @@ export const FavouritesProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         }
     };
 
+    const removeFromFavourites = async (id:number) => {
+        // removes the movie from the favourites list
+        try {
+            const response = await fetch(`http://localhost:5000/remove-favourites/${id}`, {
+                method:'DELETE',
+                headers:{'Content-Type':'application/json'},
+            })
+
+            const data = await response.json();
+            console.log(data.message);
+            setFavourites(data.result);
+            console.log(`movie removed from favs: ${id}`);
+        } catch (error) {
+            console.log('Error removing movie from favs:', error);
+            return;
+        }
+    }
+
     return (
-        <FavouritesContext.Provider value={{ favourites, addToFavourites, fetchFavourites }}>
+        <FavouritesContext.Provider value={{ favourites, addToFavourites, fetchFavourites, removeFromFavourites }}>
             {children}
         </FavouritesContext.Provider>
     );
