@@ -1,4 +1,4 @@
-import { Stack } from "@mantine/core"
+import { Stack, Text } from "@mantine/core"
 import { useEffect } from "react"
 import MovieCard from "./MovieCard";
 import { useFavourites } from "../context/FavouritesContext";
@@ -16,7 +16,7 @@ function Favourites() {
             width:'600px',
         }}>
             {
-                favourites.map(movie => (
+                favourites.length !== 0 ? favourites.map(movie => (
                     <MovieCard
                         key={movie.id}
                         movieId={movie.id}
@@ -26,7 +26,7 @@ function Favourites() {
                         movieBackDrop={movie.backdrop_path}
                         parentPage="favourites"
                     />
-                ))
+                )) : <Text style={{ textAlign:'center' }}>No movies added to favourites yet.</Text>
             }
         </Stack>
     </>
