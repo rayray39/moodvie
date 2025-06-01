@@ -9,7 +9,7 @@ function Favourites() {
     useEffect(() => {
         // fetch all the fav movies from the favourites.JSON file
         fetchFavourites();
-    }, [favourites])
+    }, [])
 
     return <>
         <Stack mt={'sm'} style={{
