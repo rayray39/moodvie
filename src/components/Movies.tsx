@@ -18,6 +18,7 @@ function Movies() {
                         movieOverview={movie.overview}
                         movieReleaseDate={movie.release_date}
                         movieBackDrop={movie.backdrop_path}
+                        parentPage="home"
                     />
                 ))
             }
