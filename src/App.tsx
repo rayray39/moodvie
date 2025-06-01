@@ -6,21 +6,21 @@ import { MovieProvider } from "./context/MovieContext"
 function App() {
 
   return (
-    <Stack gap={'xs'} style={{
-        display:'flex',
-        justifyContent:'start',
-        alignItems:'center',
-        height:'100vh'
-    }}>
-        <Text size="xl" fw={700} tt={'uppercase'}>Moodvie</Text>
-        <Text>A movie recommender system based on your mood.</Text>
-        
-        <MovieProvider>
+    <MovieProvider>
+        <Stack gap={'xs'} style={{
+            display:'flex',
+            justifyContent:'start',
+            alignItems:'center',
+            height:'100vh'
+        }}>
+            <Text size="xl" fw={700} tt={'uppercase'}>Moodvie</Text>
+            <Text>A movie recommender system based on your mood.</Text>
+            
             <SearchBar />    
-        </MovieProvider>
 
-        <Pages />
-    </Stack>
+            <Pages />
+        </Stack>
+    </MovieProvider>
   )
 }
 

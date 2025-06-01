@@ -1,5 +1,4 @@
 import { Tabs } from "@mantine/core";
-import { MovieProvider } from "../context/MovieContext";
 import Movies from "./Movies";
 import Favourites from "./Favourites";
 
@@ -20,9 +19,7 @@ function Pages() {
             </Tabs.List>
 
             <Tabs.Panel value="home">
-                <MovieProvider>
-                    <Movies />
-                </MovieProvider>
+                <Movies />
             </Tabs.Panel>
 
             <Tabs.Panel value="favourites">

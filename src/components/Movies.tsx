@@ -6,8 +6,8 @@ function Movies() {
     const { movies } = useMovieContext();
 
     return <>
-        <Stack style={{
-            width:'600px'
+        <Stack mt={'sm'} style={{
+            width:'600px',
         }}>
             {
                 movies.map(movie => (
