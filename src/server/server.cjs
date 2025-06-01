@@ -52,12 +52,12 @@ app.post('/add-favourites', async (req, res) => {
 
         // Avoid duplicates
         if (favs.find((movie) => movie.id === newMovie.id)) {
-            return res.status(400).json({ error: 'Movie already in favourites.' });
+            return res.status(400).json({ result:favs, message: 'Movie already in favourites.' });
         }
 
         favs.push(newMovie);
         await writeFavourites(favs);
-        return res.status(200).json({ result: favs, messsage: 'Successfully added movie to favourites.JSON.' });
+        return res.status(200).json({ result: favs, message: 'Successfully added movie to favourites.JSON.' });
     } catch (error) {
         return res.status(500).json({ message: 'Error: Failed to add movie to favourites JSON file.' });
     }
@@ -76,7 +76,7 @@ app.delete('/remove-favourites/:id', async (req, res) => {
 
         const newFavs = favs.filter((movie) => movie.id !== id);
         await writeFavourites(newFavs);
-        return res.status(200).json({ result: newFavs, messsage: 'Successfully removied movie from favourites.JSON.' });
+        return res.status(200).json({ result: newFavs, message: 'Successfully removied movie from favourites.JSON.' });
     } catch (error) {
         return res.status(500).json({ message: 'Error: Failed to removed movie from favourites JSON file.' });
     }
