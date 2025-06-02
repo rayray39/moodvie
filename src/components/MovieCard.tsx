@@ -1,10 +1,13 @@
 import { Button, Card, Flex, Image, Text } from "@mantine/core"
 import { useFavourites } from "../context/FavouritesContext";
 import type { Movie } from "../types/Movie";
+import { useWatched } from "../context/WatchedContext";
 
 function MovieCard({ movieId, movieTitle, movieOverview, movieReleaseDate, movieBackDrop, parentPage }:{ movieId:number ,movieTitle:string, movieOverview:string, movieReleaseDate:string, movieBackDrop:string, parentPage:string }) {
     
     const { addToFavourites, removeFromFavourites } = useFavourites();
+
+    const { addToWatched, removeFromWatched } = useWatched();
 
     const handleAddToFavs = () => {
         // adds the movie to favourites list
@@ -21,6 +24,14 @@ function MovieCard({ movieId, movieTitle, movieOverview, movieReleaseDate, movie
     const handleAddToWatched = () => {
         // adds the movie to watched list
         console.log(`movie added to watched list: ${movieId}`);
+        const newMovie:Movie = {
+            id: movieId,
+            title: movieTitle,
+            overview: movieOverview,
+            release_date: movieReleaseDate,
+            backdrop_path: movieBackDrop
+        }
+        addToWatched(newMovie);
     }
 
     const handleRemoveFromFavs = () => {
@@ -31,6 +42,7 @@ function MovieCard({ movieId, movieTitle, movieOverview, movieReleaseDate, movie
     const handleRemoveFromWatched = () => {
         // removes the movie from the watched list
         console.log(`movie removed from watched list: ${movieId}`);
+        removeFromWatched(movieId);
     }
 
     const displayButtons = () => {
