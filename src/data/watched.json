@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": 11544,
+    "title": "Lilo & Stitch",
+    "overview": "As Stitch, a runaway genetic experiment from a faraway planet, wreaks havoc on the Hawaiian Islands, he becomes the mischievous adopted alien \"puppy\" of an independent little girl named Lilo and learns about loyalty, friendship, and ʻohana, the Hawaiian tradition of family.",
+    "release_date": "2002-06-21",
+    "backdrop_path": "/aIglP9Z5gtkQf7Fidb4NRv2gfDj.jpg"
+  },
+  {
+    "id": 950387,
+    "title": "A Minecraft Movie",
+    "overview": "Four misfits find themselves struggling with ordinary problems when they are suddenly pulled through a mysterious portal into the Overworld: a bizarre, cubic wonderland that thrives on imagination. To get back home, they'll have to master this world while embarking on a magical quest with an unexpected, expert crafter, Steve.",
+    "release_date": "2025-03-31",
+    "backdrop_path": "/2Nti3gYAX513wvhp8IiLL6ZDyOm.jpg"
+  }
+]

@@ -69,7 +69,7 @@ router.delete('/remove-favourites/:id', async (req, res) => {
 
         const newFavs = favs.filter((movie) => movie.id !== id);
         await writeFavourites(newFavs);
-        return res.status(200).json({ result: newFavs, message: 'Successfully removied movie from favourites.JSON.' });
+        return res.status(200).json({ result: newFavs, message: 'Successfully removed movie from favourites.JSON.' });
     } catch (error) {
         return res.status(500).json({ message: 'Error: Failed to removed movie from favourites JSON file.' });
     }
