@@ -1,7 +1,8 @@
-import { Stack, Text } from "@mantine/core"
+import { Button, Stack, Text } from "@mantine/core"
 import { useEffect } from "react"
 import MovieCard from "./MovieCard";
 import { useFavourites } from "../context/FavouritesContext";
+import { ExportMovies } from "../utils/exportMovies";
 
 function Favourites() {
     const { fetchFavourites, favourites } = useFavourites();
@@ -12,9 +13,11 @@ function Favourites() {
     }, [])
 
     return <>
-        <Stack mt={'sm'} style={{
-            width:'600px',
+        <Stack align="center" mt={'sm'} style={{
+            width:'600px'
         }}>
+            <Button variant="default" size="xs" style={{ width:"40%" }} onClick={() => ExportMovies(favourites, "favourite_movies")}>Export Movies</Button>
+
             {
                 favourites.length !== 0 ? favourites.map(movie => (
                     <MovieCard

@@ -1,7 +1,8 @@
-import { Stack, Text } from "@mantine/core"
+import { Button, Stack, Text } from "@mantine/core"
 import { useWatched } from "../context/WatchedContext"
 import MovieCard from "./MovieCard";
 import { useEffect } from "react";
+import { ExportMovies } from "../utils/exportMovies";
 
 function Watched() {
     const { watched, fetchFromWatched } = useWatched();
@@ -11,9 +12,11 @@ function Watched() {
     }, [])
 
     return <>
-        <Stack mt={'sm'} style={{
+        <Stack align="center" mt={'sm'} style={{
             width:'600px',
         }}>
+            <Button variant="default" size="xs" style={{ width:"40%" }} onClick={() => ExportMovies(watched, "watched_movies")}>Export Movies</Button>
+
             {
                 watched.length !== 0 ?  watched.map(movie => (
                     <MovieCard

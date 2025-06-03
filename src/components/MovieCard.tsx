@@ -48,16 +48,16 @@ function MovieCard({ movieId, movieTitle, movieOverview, movieReleaseDate, movie
     const displayButtons = () => {
         if (parentPage === 'home') {
             return <>
-                <Button variant="default" color="blue" fullWidth mt="xs" radius="md" onClick={handleAddToFavs}>Add to Favourites</Button>
-                <Button variant="default" color="blue" fullWidth mt="xs" radius="md" onClick={handleAddToWatched}>Add to Watched</Button>
+                <Button variant="default" fullWidth mt="xs" radius="md" onClick={handleAddToFavs}>Add to Favourites</Button>
+                <Button variant="default" fullWidth mt="xs" radius="md" onClick={handleAddToWatched}>Add to Watched</Button>
             </>
         } else if (parentPage === 'favourites') {
             return <>
-                <Button variant="default" color="blue" fullWidth mt="xs" radius="md" onClick={handleRemoveFromFavs}>Remove from Favourites</Button>
+                <Button variant="default" fullWidth mt="xs" radius="md" onClick={handleRemoveFromFavs}>Remove from Favourites</Button>
             </>
         } else if (parentPage === 'watched') {
             return <>
-                <Button variant="default" color="blue" fullWidth mt="xs" radius="md" onClick={handleRemoveFromWatched}>Remove from Watched</Button>
+                <Button variant="default" fullWidth mt="xs" radius="md" onClick={handleRemoveFromWatched}>Remove from Watched</Button>
             </>
         } else {
             return null
